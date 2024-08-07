@@ -22904,7 +22904,7 @@ FCCee 240 GeV Higgs 5/ab:
   values:
     mu_Zh_FCCee(h->bb): 1 +- 0.003
 
-FCCee EWPO measurements:
+FCCee EWPO:
   experiment: FCCee
   inspire: xxx:2024
   description: FCCee projections using SM central values but with FCCee uncertainties. 
