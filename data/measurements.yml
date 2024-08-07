@@ -22892,3 +22892,13 @@ LHCb Bs->K*mumu 2018:
    inspire: LHCb:2018rym
    values:
      BR_LHCb(Bs->K*0mumu): 2.9 ± 1.0 ± 0.2 ± 0.3 1e-8
+
+##########################################
+#FCCee measurements by Eetu Loisa 2024 ###
+###########################################
+
+FCCee 240 GeV Higgs 5/ab:
+  experiment: FCCee
+  inspire: ???
+  values:
+    mu_Zh_FCCee(h->bb): 1 +- 0.003
