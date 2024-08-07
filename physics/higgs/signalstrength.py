@@ -37,6 +37,11 @@ prod_modes = {
         'tex': r'\text{VBF}',
         'str': 'VBF',
     },
+    'hz_fccee': {
+        'desc': '$Z$ boson associated production at FCCee',
+        'tex': 'Zh FCCee',
+        'str': 'Zh FCCee',
+    },
 }
 
 decay_modes = {

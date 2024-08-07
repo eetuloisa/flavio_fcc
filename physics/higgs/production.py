@@ -94,3 +94,23 @@ def vv_h(C):
           +0.002 * C['phid_22']
           )
     return 1 + 1e6 * np.real
+
+##################################
+### FCCee production processes ###
+##################################
+
+def hz_fccee(C):
+    r """Higgs production associated with a Z boson normalised to the SM at FCC-ee"""
+    np = (+0.121 * C['phiBox'] 
+          -0.005 * C['phiD'] 
+          +0.529 * C['phiW'] 
+          +0.127 * C['phiB'] 
+          +0.236 * C['phiWB'] 
+          +0.747 * C['phil3_11'] 
+          -0.131 * C['phil3_22'] 
+          +0.878 * C['phil1_11']  
+          -0.769 * C['phie_11'] 
+          +0.132 * C['ll_1221'] 
+          ) 
+    return 1 + 1e6 * np.real
+
