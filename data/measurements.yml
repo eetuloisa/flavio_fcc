@@ -22893,16 +22893,24 @@ LHCb Bs->K*mumu 2018:
    values:
      BR_LHCb(Bs->K*0mumu): 2.9 ± 1.0 ± 0.2 ± 0.3 1e-8
 
-##########################################
-#FCCee measurements by Eetu Loisa 2024 ###
-###########################################
+#############################################
+### FCCee measurements by Eetu Loisa 2024 ###
+#############################################
 
 FCCee 240 GeV Higgs 5/ab:
   experiment: FCCee
   inspire: xxx:2024
-  description: FCCee projections using SM central values but with FCCee uncertainties.
+  description: FCCee projections using SM central values but with FCCee uncertainties projected for the 240 GeV run.
   values:
-    mu_Zh_FCCee(h->bb): 1 +- 0.003
+    mu_Zh_FCCee240(h->bb): 1 +- 0.003
+    mu_Zh_FCCee240(h->cc): 1 +- 0.022
+    mu_Zh_FCCee240(h->gg): 1 +- 0.019
+    mu_Zh_FCCee240(h->ZZ): 1 +- 0.044
+    mu_Zh_FCCee240(h->WW): 1 +- 0.012
+    mu_Zh_FCCee240(h->tautau): 1 +- 0.009
+    mu_Zh_FCCee240(h->gammagamma): 1 +- 0.09
+    mu_Zh_FCCee240(h->Zgamma): 1 +- 0.17
+    mu_Zh_FCCee240(h->mumu): 1 +- 0.19
 
 FCCee EWPO:
   experiment: FCCee

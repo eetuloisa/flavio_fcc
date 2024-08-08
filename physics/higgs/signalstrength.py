@@ -37,10 +37,15 @@ prod_modes = {
         'tex': r'\text{VBF}',
         'str': 'VBF',
     },
-    'hz_fccee': {
-        'desc': '$Z$ boson associated production at FCCee',
-        'tex': 'Zh FCCee',
-        'str': 'Zh FCCee',
+    'hz_fccee240': {
+        'desc': '$Z$ boson associated production at FCCee at 240 GeV',
+        'tex': 'Zh FCCee240',
+        'str': 'Zh_FCCee240',
+    },
+    'hz_fccee365': {
+        'desc': '$Z$ boson associated production at FCCee at 365 GeV',
+        'tex': 'Zh FCCee365',
+        'str': 'Zh_FCCee365',
     },
 }
 
@@ -90,6 +95,11 @@ decay_modes = {
         'str': 'gammagamma',
         'tex_class': r'h\to VV',
     },
+    'h_gg': {
+        'tex': r'gg',
+        'str': 'gg',
+        'tex_class': r'h\to gg',
+    },
 }
 
 
@@ -117,6 +127,7 @@ def make_obs_higgs(name_prod, name_dec):
         return higgs_signalstrength(wc_obj, par, name_prod, name_dec)
 
     flavio.classes.Prediction(obs_name, obs_fct)
+    print(obs_name)
 
 
 for prod in prod_modes:
