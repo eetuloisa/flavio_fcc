@@ -22899,7 +22899,7 @@ LHCb Bs->K*mumu 2018:
 
 FCCee 240 GeV Higgs 5/ab:
   experiment: FCCee
-  inspire: xxx:2024
+  inspire: deBlas:2022ofj
   description: FCCee projections using SM central values but with FCCee uncertainties projected for the 240 GeV run.
   values:
     mu_Zh_FCCee240(h->bb): 1 +- 0.003
@@ -22912,9 +22912,23 @@ FCCee 240 GeV Higgs 5/ab:
     mu_Zh_FCCee240(h->Zgamma): 1 +- 0.17
     mu_Zh_FCCee240(h->mumu): 1 +- 0.19
 
+FCCee 365 GeV Higgs 1_5/ab:
+  experiment: FCCee
+  inspire: deBlas:2022ofj
+  description: FCCee projections using SM central values but with FCCee uncertainties projected for the 365 GeV run.
+  values:
+    mu_Zh_FCCee365(h->bb): 1 +- 0.005
+    mu_Zh_FCCee365(h->cc): 1 +- 0.065
+    mu_Zh_FCCee365(h->gg): 1 +- 0.035
+    mu_Zh_FCCee365(h->ZZ): 1 +- 0.12
+    mu_Zh_FCCee365(h->WW): 1 +- 0.026
+    mu_Zh_FCCee365(h->tautau): 1 +- 0.018
+    mu_Zh_FCCee365(h->gammagamma): 1 +- 0.18
+    mu_Zh_FCCee365(h->mumu): 1 +- 0.40
+
 FCCee EWPO:
   experiment: FCCee
-  inspire: xxx:2024
+  inspire: deBlas:2022ofj
   description: FCCee projections using SM central values but with FCCee uncertainties. 
   values:
     m_W: 80.377 ± 0.00025 ± 0.00030
