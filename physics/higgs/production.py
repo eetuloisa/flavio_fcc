@@ -102,11 +102,11 @@ def vv_h(C):
 def hz_fccee240(C):
     r"""Higgs production associated with a Z boson normalised to the SM at FCC-ee at 240 GeV"""
     np = (+0.121 * C['phiBox'] 
-          -0.005 * C['phiD'] 
+          -0.006 * C['phiD'] 
           +0.529 * C['phiW'] 
           +0.127 * C['phiB'] 
           +0.236 * C['phiWB'] 
-          +0.747 * C['phil3_11'] 
+          +0.746 * C['phil3_11'] 
           -0.131 * C['phil3_22'] 
           +0.878 * C['phil1_11']  
           -0.769 * C['phie_11'] 
@@ -116,15 +116,15 @@ def hz_fccee240(C):
 
 def hz_fccee365(C):
     r"""Higgs production associated with a Z boson normalised to the SM at FCC-ee at 365 GeV"""
-    np = (+0.122 * C['phiBox'] 
-          -0.004 * C['phiD'] 
-          +0.775 * C['phiW'] 
+    np = (+0.121 * C['phiBox'] 
+          -0.005 * C['phiD'] 
+          +0.773 * C['phiW'] 
           +0.182 * C['phiB'] 
-          +0.354 * C['phiWB'] 
-          +1.783 * C['phil3_11'] 
+          +0.353 * C['phiWB'] 
+          +1.782 * C['phil3_11'] 
           -0.131 * C['phil3_22'] 
-          +1.913 * C['phil1_11'] 
-          -1.673 * C['phie_11'] 
+          +1.912 * C['phil1_11'] 
+          -1.677 * C['phie_11'] 
           +0.133 * C['ll_1221'] 
           )
     return 1 + 1e6 * np.real
