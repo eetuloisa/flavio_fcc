@@ -129,3 +129,21 @@ def hz_fccee365(C):
           )
     return 1 + 1e6 * np.real
 
+def hnunu_fccee240(C):
+    r"""Higgs production associated with a nu nubar pair, regardless of neutrino flavour. The cross-section includes the background process e+e- -> Z(->nu nubar)"""
+    np = (+0.121 * C['phiBox'] 
+          -0.057 * C['phiD'] 
+          +0.456 * C['phiW'] 
+          +0.110 * C['phiB'] 
+          +0.154 * C['phiWB'] 
+          +0.001 * C['eB_11'] 
+          +0.585 * C['phil3_11'] 
+          -0.171 * C['phil3_22'] 
+          +0.035 * C['phil3_33'] 
+          +0.738 * C['phil1_11'] 
+          -0.035 * C['phil1_22'] 
+          -0.034 * C['phil1_33'] 
+          -0.670 * C['phie_11'] 
+          +0.205 * C['ll_1221'] 
+          )
+    return 1 + 1e6 * np.real
