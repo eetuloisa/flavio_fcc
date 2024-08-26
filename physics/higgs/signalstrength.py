@@ -52,6 +52,11 @@ prod_modes = {
         'tex': 'hnunu FCCee240',
         'str': 'hnunu_FCCee240',
     },
+    'hnunu_fccee365': {
+        'desc': '$h \nu \nu$ production at FCCee at 365 GeV',
+        'tex': 'hnunu FCCee365',
+        'str': 'hnunu_FCCee365',
+    },
 }
 
 decay_modes = {
