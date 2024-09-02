@@ -47,6 +47,16 @@ prod_modes = {
         'tex': 'Zh FCCee365',
         'str': 'Zh_FCCee365',
     },
+    'hnunu_fccee240': {
+        'desc': '$h \nu \nu$ production at FCCee at 240 GeV',
+        'tex': 'hnunu FCCee240',
+        'str': 'hnunu_FCCee240',
+    },
+    'hnunu_fccee365': {
+        'desc': '$h \nu \nu$ production at FCCee at 365 GeV',
+        'tex': 'hnunu FCCee365',
+        'str': 'hnunu_FCCee365',
+    },
 }
 
 decay_modes = {
@@ -127,7 +137,7 @@ def make_obs_higgs(name_prod, name_dec):
         return higgs_signalstrength(wc_obj, par, name_prod, name_dec)
 
     flavio.classes.Prediction(obs_name, obs_fct)
-    print(obs_name)
+    print(obs_name) # Helper function that should be removed from final version
 
 
 for prod in prod_modes:

@@ -129,3 +129,46 @@ def hz_fccee365(C):
           )
     return 1 + 1e6 * np.real
 
+def hnunu_fccee240(C):
+    r"""Higgs production associated with a nu nubar pair, regardless of neutrino flavour, normalised to the SM at FCC-ee at 240 GeV. The cross-section includes the background process e+e- -> Z(->nu nubar)"""
+    np = (+0.121 * C['phiBox'] 
+          -0.004 * C['phiD'] 
+          +0.456 * C['phiW'] 
+          +0.110 * C['phiB'] 
+          +0.233 * C['phiWB'] 
+          +0.001 * C['eW_11'] 
+          +0.001 * C['eB_11'] 
+          +0.657 * C['phil3_11'] 
+          -0.099 * C['phil3_22'] 
+          +0.024 * C['phil3_33'] 
+          +0.742 * C['phil1_11'] 
+          -0.032 * C['phil1_22'] 
+          -0.031 * C['phil1_33'] 
+          -0.666 * C['phie_11'] 
+          +0.005 * C['phie_22'] 
+          +0.004 * C['phie_33'] 
+          +0.123 * C['ll_1221'] 
+          )
+    return 1 + 1e6 * np.real
+
+def hnunu_fccee365(C):
+    r"""Higgs production associated with a nu nubar pair, regardless of neutrino flavour, normalised to the SM at FCC-ee at 365 GeV. The cross-section includes the background process e+e- -> Z(->nu nubar)"""
+    np = (+0.122 * C['phiBox'] 
+          -0.047 * C['phiD'] 
+          +0.291 * C['phiW'] 
+          +0.097 * C['phiB'] 
+          +0.114 * C['phiWB'] 
+          +0.001 * C['eW_11'] 
+          +0.002 * C['eB_11'] 
+          +0.531 * C['phil3_11'] 
+          -0.154 * C['phil3_22'] 
+          +0.013 * C['phil3_33'] 
+          +0.805 * C['phil1_11'] 
+          -0.017 * C['phil1_22'] 
+          -0.016 * C['phil1_33'] 
+          -0.762 * C['phie_11'] 
+          +0.003 * C['phie_22'] 
+          +0.003 * C['phie_33'] 
+          +0.168 * C['ll_1221'] 
+          )
+    return 1 + 1e6 * np.real
