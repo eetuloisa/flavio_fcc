@@ -9,7 +9,6 @@ from numpy import pi, sqrt
 import numpy as np
 from flavio.config import config
 
-print('eeqq.py loaded')
 
 def F_qqll_SM(q, Xq, l, Xl, s, par):
     r"""SM $Z$ and $\gamma$ contribution to the $\bar q q\to \ell^+\ell^-$
@@ -53,8 +52,10 @@ def wceff_qqll_sm(s, par):
             for q in 'ud':
                 wc['CV{}{}_e{}'.format(Xl, Xq, q)] = F_qqll_SM(q, Xq, 'e', Xl, s, par) * E
                 #print('Added CV{}{}_e{} to wc'.format(Xl, Xq, q) + ' with value' + str(wc['CV{}{}_e{}'.format(Xl, Xq, q)]) + 'at s =' + str(s))
-    wc['CSRL_ed'] = wc['CSRR_ed'] = wc['CTRR_ed'] = np.zeros((3, 3, 3, 3))
-    wc['CSRL_eu'] = wc['CSRR_eu'] = wc['CTRR_eu'] = np.zeros((3, 3, 3, 3))
+    wc['CSRL_ed'] = wc['CSRR_ed'] = wc['CSLR_ed'] = wc['CSLL_ed'] = np.zeros((3, 3, 3, 3)) 
+    wc['CSRL_eu'] = wc['CSRR_eu'] = wc['CSLR_eu'] = wc['CSLL_eu'] =  np.zeros((3, 3, 3, 3))
+    wc['CTRL_ed'] = wc['CTRR_ed'] = wc['CTLR_ed'] = wc['CTLL_ed'] = np.zeros((3, 3, 3, 3))
+    wc['CTRL_ed'] = wc['CTRR_eu'] = wc['CTLR_eu'] = wc['CTLL_eu'] = np.zeros((3, 3, 3, 3))
     return wc
 
 
@@ -143,13 +144,44 @@ def sigma_llqq_tot(wc_eff, s, q):
                 for Y in 'LR':
                     key = '{}{}{}{}'.format(gamma, gammap, X, Y)
                     if key in f_integrated_ctheta_09:
-                        print('key =', key)
-                        print('Does this return an interger or an array or something else: ', wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)])
+                        #print('key =', key)
+                        #print('Does this return an integer or an array or something else: ', wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)])
                         sigma += 3 / (16 * pi * s**2) * f_integrated_ctheta_09['{}{}{}{}'.format(gamma, gammap, X, Y)](s) * wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)][0,0,i,i] * np.conjugate(wc_eff['C{}{}{}_e{}'.format(gammap,X,Y,q)][0,0,i,i])
-                        print('Added', key, 'to total cross-section')
-                        print('sigma =', sigma, 'at this point')
+                        #print('Added', key, 'to total cross-section')
+                        #print('sigma =', sigma, 'at this point')
     # Return total cross-section
     return sigma
+
+def sigma_llqq_forward_minus_backward(wc_eff, s, q):
+    r"""Cross section of e^+ e^- \to q1 q2 in the forward region minus the backward region
+
+    Returns $\sigma_F - \sigma_B$ in units of GeV$^{-2}$
+
+    Parameters:
+    - `s`: centre of mass energy in GeV$^2$ of the lepton pair
+    - `l`: lepton flavour, should be 'e'
+    - `q1`, `q2`: outgoing quark flavours
+    - `wc_eff`: SM + SMEFT amplitude for the process as dictionary with entries corresponding to different Wilson coefficients
+    """
+
+    q, i = fermion_indices[q]
+
+    # Calculate the cross-section in the forward minus backward region, sigma_F - sigma_B
+    sigma = 0
+    for gamma in 'SVT':
+        for gammap in 'SVT':
+            for X in 'LR':
+                for Y in 'LR':
+                    key = '{}{}{}{}'.format(gamma, gammap, X, Y)
+                    if key in f_AFB_ctheta_09:
+                        #print('key =', key)
+                        #print('Does this return an integer or an array or something else: ', wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)])
+                        sigma += 3 / (16 * pi * s**2) * f_AFB_ctheta_09['{}{}{}{}'.format(gamma, gammap, X, Y)](s) * wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)][0,0,i,i] * np.conjugate(wc_eff['C{}{}{}_e{}'.format(gammap,X,Y,q)][0,0,i,i])
+                        #print('Added', key, 'to total cross-section')
+                        #print('sigma =', sigma, 'at this point')
+    # Return total cross-section
+    return sigma
+
 
 def sigma_llqq_tot_obs(wc_obj, par, E, q):
     # This function takes the BSM Wilson coefficients as input, runs them down, converts to wc_eff and adds to the SM contribution, and finally returns the cross-section
@@ -159,9 +191,22 @@ def sigma_llqq_tot_obs(wc_obj, par, E, q):
     #print('wc_eff_np =', wc_eff_np)
     wc_eff_sm = wceff_qqll_sm(s, par)
     wc_eff = add_dict((wc_eff_sm, wc_eff_np))
-    print('wc_eff keys' + str(wc_eff.keys()))
+    #print('wc_eff keys' + str(wc_eff.keys()))
 
-    return sigma_llqq_tot(wc_eff, s, q)
+    return np.real(sigma_llqq_tot(wc_eff, s, q))
+
+def AFB_llqq_obs(wc_obj, par, E, q):
+    # This function takes the BSM Wilson coefficients as input, runs them down, converts to wc_eff and adds to the SM contribution, and finally returns the forward-backward asymmetry
+    scale = E
+    s = E**2
+    wc_eff_np = wceff_qqll_np(wc_obj, par, scale)
+    #print('wc_eff_np =', wc_eff_np)
+    wc_eff_sm = wceff_qqll_sm(s, par)
+    wc_eff = add_dict((wc_eff_sm, wc_eff_np))
+    #print('wc_eff keys' + str(wc_eff.keys()))
+    A_FB = sigma_llqq_forward_minus_backward(wc_eff, s, q) / sigma_llqq_tot(wc_eff, s, q)
+
+    return np.real(A_FB)
 
 # Function to help generate the total cross-section observable for a given quark q
 def generate_sigma_obs(q):
@@ -171,10 +216,16 @@ def generate_sigma_obs(q):
         return _selection_efficiencies[q] * sigma_llqq_tot_obs(wc_obj, par, E, q)
     return f
 
+# Function to help generate the total cross-section observable for a given quark q
+def generate_afb_obs(q):
+    def f(wc_obj, par, E):
+        return AFB_llqq_obs(wc_obj, par, E, q)
+    return f
+
 # Observable and Prediction instances
 _tex = ['c','b']
 
-
+# Create the observables and predictions for the total cross-section
 for q in _tex:
     _process_tex = r"e^+e^- \to \overline{" + q + r"}" + q 
     _process_taxonomy = r'Process :: $e^+e^-$ scattering :: $' + _process_tex + r"$" #TODO Figure out how this should be formatted
@@ -185,4 +236,17 @@ for q in _tex:
     _obs.add_taxonomy(_process_taxonomy)
     
     Prediction(_obs_name, generate_sigma_obs(q))
+    print("Prediction for ", _obs_name, "added")
+
+# Create the observables and predictions for the forward-backward asymmetry
+for q in _tex:
+    _process_tex = r"A_{FB}(e^+e^- \to \overline{" + q + r"}" + q + r")"
+    _process_taxonomy = r'Process :: $e^+e^-$ scattering :: $' + _process_tex + r"$" #TODO Figure out how this should be formatted
+    _obs_name = "AFB(ee->{}{})(high_s)".format(q,q)
+    _obs = Observable(_obs_name, arguments=['E'])
+    _obs.set_description(r"Forward-backward asymmetry above Z pole $" + _process_tex + r"$")
+    _obs.tex = r"$" + _process_tex + r"$"
+    _obs.add_taxonomy(_process_taxonomy)
+    
+    Prediction(_obs_name, generate_afb_obs(q))
     print("Prediction for ", _obs_name, "added")
