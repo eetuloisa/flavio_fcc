@@ -1,4 +1,3 @@
-r"""Observables of dilepton tails."""
+r"""Observables of FCC-ee e^+e^- -> q qbar scattering."""
 
-from . import ppll
-from . import pplnu
+from . import eeqq

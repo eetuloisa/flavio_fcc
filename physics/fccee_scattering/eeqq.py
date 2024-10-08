@@ -9,6 +9,8 @@ from numpy import pi, sqrt
 import numpy as np
 from flavio.config import config
 
+print('eeqq.py loaded')
+
 def F_qqll_SM(q, Xq, l, Xl, s, par):
     r"""SM $Z$ and $\gamma$ contribution to the $\bar q q\to \ell^+\ell^-$
     amplitude."""
@@ -20,7 +22,7 @@ def F_qqll_SM(q, Xq, l, Xl, s, par):
     aEW = par['alpha_e']
     e2 = 4 * pi * aEW
     g2=e2/s2w 
-    gp2=e2/(1-s2w) * # We do not run the couplings as even at 365 GeV they change by less than 1%
+    gp2=e2/(1-s2w)  # We do not run the couplings as even at 365 GeV they change by less than 1%
     g_cw = sqrt(g2+gp2) # g over cw
     s2w = gp2/(g2+gp2)
     par = par.copy()
@@ -50,6 +52,7 @@ def wceff_qqll_sm(s, par):
         for Xq in 'LR':
             for q in 'ud':
                 wc['CV{}{}_e{}'.format(Xl, Xq, q)] = F_qqll_SM(q, Xq, 'e', Xl, s, par) * E
+                #print('Added CV{}{}_e{} to wc'.format(Xl, Xq, q) + ' with value' + str(wc['CV{}{}_e{}'.format(Xl, Xq, q)]) + 'at s =' + str(s))
     wc['CSRL_ed'] = wc['CSRR_ed'] = wc['CTRR_ed'] = np.zeros((3, 3, 3, 3))
     wc['CSRL_eu'] = wc['CSRR_eu'] = wc['CTRR_eu'] = np.zeros((3, 3, 3, 3))
     return wc
@@ -70,6 +73,8 @@ def wceff_qqll_np(wc_obj, par, scale):
     wc = {}
     ckm = ckm_flavio.get_ckm(par)
     # match to notation used in the observable
+    # Note that the approach here is slightly different from flavio.physics.dileptons.ppll.py in that we add hermitian conjugates explicitly into the wc dictionary
+    # CVXX_ex (8 entries):
     wc['CVLL_eu'] = C['lq1'] - C['lq3']
     wc['CVLL_ed'] = np.einsum('ijmn,mk,nl->ijkl',C['lq1'] + C['lq3'],np.conjugate(ckm),ckm)
     wc['CVRR_eu'] = C['eu']
@@ -78,24 +83,27 @@ def wceff_qqll_np(wc_obj, par, scale):
     wc['CVLR_ed'] = C['ld']
     wc['CVRL_eu'] = np.einsum('klij->ijkl', C['qe'])
     wc['CVRL_ed'] = np.einsum('mnij,mk,nl->ijkl', C['qe'],np.conjugate(ckm),ckm)
+    # CSXX_ex (8 entries):
     wc['CSRL_ed'] = np.einsum('ijkm,ml->ijkl',C['ledq'],ckm)
+    wc['CSLR_ed'] = np.conjugate(np.transpose(np.einsum('ijkm,ml->ijkl',C['ledq'],ckm), [1,0,3,2])) # Hermitian conjugate of the line above
+    wc['CSRR_ed'] = wc['CSLL_ed'] = np.zeros((3,3,3,3))
     wc['CSRR_eu'] = -C['lequ1']
+    wc['CSLL_eu'] = np.conjugate(np.transpose(-C['lequ1'],[1,0,3,2])) # Hermitian conjugate of the line above
+    wc['CSLR_eu'] = wc['CSRL_eu'] = np.zeros((3,3,3,3))
+    # CTXX_xx (8 entries)
     wc['CTRR_eu'] = -C['lequ3']
-    wc['CSRL_eu'] = wc['CSRR_ed'] = wc['CTRR_ed'] = np.zeros((3, 3, 3, 3))
+    wc['CTLL_eu'] = np.conjugate(np.transpose(-C['lequ3'] ,[1,0,3,2]))
+    wc['CTLR_eu'] = wc['CTRL_eu'] = np.zeros((3,3,3,3))
+    wc['CTRR_ed'] = wc['CTLL_ed'] = np.zeros((3,3,3,3))
+    wc['CTLR_ed'] = wc['CTRL_ed'] = np.zeros((3,3,3,3))
 
     return wc
 
 
-
 # translate quark name to LHAPDF flavour index
-# TODO: decide if this is necessary
-pdf_flavor = {'d': 1, 'u': 2, 's': 3, 'c': 4, 'b': 5}
 fermion_indices = {
     'c': ('u', 1),
     'b': ('d', 2),
-    'e': ('e', 0),
-    'mu': ('e', 1),
-    'tau': ('e', 2),
 }
 
 # this function returns the piece coming out of the integration of the Dirac traces
@@ -134,9 +142,12 @@ def sigma_llqq_tot(wc_eff, s, q):
             for X in 'LR':
                 for Y in 'LR':
                     key = '{}{}{}{}'.format(gamma, gammap, X, Y)
-                    if key in f_fully_integrated:
+                    if key in f_integrated_ctheta_09:
+                        print('key =', key)
+                        print('Does this return an interger or an array or something else: ', wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)])
                         sigma += 3 / (16 * pi * s**2) * f_integrated_ctheta_09['{}{}{}{}'.format(gamma, gammap, X, Y)](s) * wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)][0,0,i,i] * np.conjugate(wc_eff['C{}{}{}_e{}'.format(gammap,X,Y,q)][0,0,i,i])
-
+                        print('Added', key, 'to total cross-section')
+                        print('sigma =', sigma, 'at this point')
     # Return total cross-section
     return sigma
 
@@ -145,29 +156,33 @@ def sigma_llqq_tot_obs(wc_obj, par, E, q):
     scale = E
     s = E**2
     wc_eff_np = wceff_qqll_np(wc_obj, par, scale)
+    #print('wc_eff_np =', wc_eff_np)
     wc_eff_sm = wceff_qqll_sm(s, par)
-    wc_eff = add_dict(wc_eff_sm, wc_eff_np)
+    wc_eff = add_dict((wc_eff_sm, wc_eff_np))
+    print('wc_eff keys' + str(wc_eff.keys()))
 
-    sigma_llqq_tot(wc_eff, s, q)
+    return sigma_llqq_tot(wc_eff, s, q)
 
 # Function to help generate the total cross-section observable for a given quark q
 def generate_sigma_obs(q):
+    _selection_efficiencies = {'c': 0.03, 'b': 0.15}
+
     def f(wc_obj, par, E):
-        return sigma_llqq_tot_obs(wc_obj, par, E, q)
+        return _selection_efficiencies[q] * sigma_llqq_tot_obs(wc_obj, par, E, q)
     return f
 
 # Observable and Prediction instances
 _tex = ['c','b']
 
-_selection_efficiencies = {'c': 0.03, 'b': 0.15}
 
 for q in _tex:
     _process_tex = r"e^+e^- \to \overline{" + q + r"}" + q 
-    _process_taxonomy = r'Process :: $e^+e^-$ scattering :: $' + _process_tex + r"$" #TODO EDIT
+    _process_taxonomy = r'Process :: $e^+e^-$ scattering :: $' + _process_tex + r"$" #TODO Figure out how this should be formatted
     _obs_name = "sigma(ee->{}{})".format(q,q)
     _obs = Observable(_obs_name, arguments=['E'])
     _obs.set_description(r"Cross section of $" + _process_tex + r"$")
     _obs.tex = r"$\sigma(" + _process_tex + r")$"
     _obs.add_taxonomy(_process_taxonomy)
     
-    Prediction(_obs_name, _selection_efficiencies[q] * generate_sigma_obs(q))
+    Prediction(_obs_name, generate_sigma_obs(q))
+    print("Prediction for ", _obs_name, "added")
