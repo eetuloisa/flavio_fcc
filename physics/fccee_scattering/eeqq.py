@@ -229,7 +229,7 @@ _tex = ['c','b']
 for q in _tex:
     _process_tex = r"e^+e^- \to \overline{" + q + r"}" + q 
     _process_taxonomy = r'Process :: $e^+e^-$ scattering :: $' + _process_tex + r"$" #TODO Figure out how this should be formatted
-    _obs_name = "sigma(ee->{}{})".format(q,q)
+    _obs_name = "sigma(ee->{}{})(high_E)".format(q,q)
     _obs = Observable(_obs_name, arguments=['E'])
     _obs.set_description(r"Cross section of $" + _process_tex + r"$")
     _obs.tex = r"$\sigma(" + _process_tex + r")$"
@@ -242,7 +242,7 @@ for q in _tex:
 for q in _tex:
     _process_tex = r"A_{FB}(e^+e^- \to \overline{" + q + r"}" + q + r")"
     _process_taxonomy = r'Process :: $e^+e^-$ scattering :: $' + _process_tex + r"$" #TODO Figure out how this should be formatted
-    _obs_name = "AFB(ee->{}{})(high_s)".format(q,q)
+    _obs_name = "AFB(ee->{}{})(high_E)".format(q,q)
     _obs = Observable(_obs_name, arguments=['E'])
     _obs.set_description(r"Forward-backward asymmetry above Z pole $" + _process_tex + r"$")
     _obs.tex = r"$" + _process_tex + r"$"
