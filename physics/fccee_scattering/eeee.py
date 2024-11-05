@@ -1,5 +1,6 @@
 #from flavio.math.integrate import nintegrate
-from flavio.physics.zdecays.smeftew import gV_SM, gA_SM, _QN
+from flavio.physics.zdecays.smeftew import gV_SM, gA_SM
+import flavio.physics.zdecays.smeftew as smeftew
 from flavio.physics.common import add_dict
 from flavio.classes import Observable, Prediction
 from flavio.physics import ckm as ckm_flavio

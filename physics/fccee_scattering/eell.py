@@ -1,5 +1,6 @@
 #from flavio.math.integrate import nintegrate
 from flavio.physics.zdecays.smeftew import gV_SM, gA_SM, _QN
+import flavio.physics.zdecays.smeftew as smeftew
 from flavio.physics.common import add_dict
 from flavio.classes import Observable, Prediction
 from flavio.physics import ckm as ckm_flavio
@@ -10,10 +11,12 @@ import numpy as np
 from flavio.config import config
 
 
-def F_eell_SM(l1, Xl1, l2, Xl2, s, par):
+def F_eell_SM(l1, Xl1, l2, Xl2, s, wc_obj, par):
     r"""SM $Z$ and $\gamma$ contribution to the $\bar q q\to \ell^+\ell^-$
     amplitude."""
-    # This function is adapted from flavio.physics.dileptons.ppll.py which makes parts of it redundant for this specific case
+    # This function is adapted from flavio.physics.dileptons.ppll.py 
+    E = np.sqrt(s)
+    wcxf = wc_obj.get_wcxf(sector='dB=dL=0', scale=E, par=par, eft='SMEFT', basis='Warsaw up')
 
     # parameters
     Ql = -1
@@ -34,6 +37,12 @@ def F_eell_SM(l1, Xl1, l2, Xl2, s, par):
     gVl2 = g_cw * gV_SM(l2, par)
     gAl1 = g_cw * gA_SM(l1, par)
     gAl2 = g_cw * gA_SM(l2, par)
+    # Add SMEFT corrections to couplings
+    gVl1 += g_cw * smeftew.d_gVl(l1, l1, par, wcxf)
+    gVl2 += g_cw * smeftew.d_gVl(l2, l2, par, wcxf)
+    gAl1 += g_cw * smeftew.d_gAl(l1, l1, par, wcxf)
+    gAl2 += g_cw * smeftew.d_gAl(l2, l2, par, wcxf)
+
     if Xl1 == 'L':
         gZl1 = gVl1 + gAl1
     elif Xl1 == 'R':
@@ -45,13 +54,13 @@ def F_eell_SM(l1, Xl1, l2, Xl2, s, par):
     # SM contribution
     return g2*s2w * Ql * Ql / s + gZl1 * gZl2 / (s - mZ**2 + 1j * mZ * GammaZ)
 
-
-def wceff_eell_sm(s, par):
+# This is sm-like in the sense that it only uses SM-like vertices; but the Zff couplings are modified by SMEFT corrections
+def wceff_eell_sm(wc_obj, par, s):
     wc = {}
     for Xl1 in 'LR':
         for Xl2 in 'LR':
-            wc['CV{}{}_mu'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'e', Xl2, s, par) 
-            wc['CV{}{}_tau'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'e', Xl2, s, par) 
+            wc['CV{}{}_mu'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'e', Xl2, s, wc_obj, par) 
+            wc['CV{}{}_tau'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'e', Xl2, s, wc_obj, par) 
             print('Added CV{}{}_l to wc'.format(Xl1, Xl2) + ' with value' + str(wc['CV{}{}_mu'.format(Xl1, Xl2)]) + 'at s =' + str(s))
     return wc
 
@@ -62,8 +71,7 @@ def wceff_eell_np(wc_obj, par, scale):
     (\bar e_i\Gamma_1 e_j)(\bar e_k\Gamma_2 e_l)$$
     """
     # get the dictionary, in a non-redundant basis
-    wcxf_dict = wc_obj.get_wcxf(sector='dB=dL=0', scale=scale, par=par,
-                                eft='SMEFT', basis='Warsaw up').dict
+    wcxf_dict = wc_obj.get_wcxf(sector='dB=dL=0', scale=scale, par=par, eft='SMEFT', basis='Warsaw up').dict
     wc = {}
     # match to notation used in the observable
     # Note that the approach here is slightly different from flavio.physics.dileptons.ppll.py in that we add hermitian conjugates explicitly into the wc dictionary
@@ -175,7 +183,7 @@ def sigma_eell_tot_obs(wc_obj, par, E, l):
     s = E**2
     wc_eff_np = wceff_eell_np(wc_obj, par, scale)
     #print('wc_eff_np =', wc_eff_np)
-    wc_eff_sm = wceff_eell_sm(s, par)
+    wc_eff_sm = wceff_eell_sm(wc_obj, par, s)
     wc_eff = add_dict((wc_eff_sm, wc_eff_np))
     print('wc_eff keys' + str(wc_eff.keys()))
 
@@ -187,7 +195,7 @@ def AFB_eell_obs(wc_obj, par, E, l):
     s = E**2
     wc_eff_np = wceff_eell_np(wc_obj, par, scale)
     #print('wc_eff_np =', wc_eff_np)
-    wc_eff_sm = wceff_eell_sm(s, par)
+    wc_eff_sm = wceff_eell_sm(wc_obj, par, s)
     wc_eff = add_dict((wc_eff_sm, wc_eff_np))
     print('wc_eff keys' + str(wc_eff.keys()))
 

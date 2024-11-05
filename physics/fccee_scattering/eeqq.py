@@ -10,9 +10,13 @@ import numpy as np
 from flavio.config import config
 
 
-def F_qqll_SM(q, Xq, l, Xl, s, par):
+def F_qqll_SM(q, Xq, l, Xl, s, wc_obj, par):
     r"""SM $Z$ and $\gamma$ contribution to the $\bar q q\to \ell^+\ell^-$
     amplitude."""
+
+    E = np.sqrt(s)
+    wcxf = wc_obj.get_wcxf(sector='dB=dL=0', scale=E, par=par, eft='SMEFT', basis='Warsaw up')
+
     # parameters
     Ql = -1
     mZ = par['m_Z']
@@ -32,6 +36,12 @@ def F_qqll_SM(q, Xq, l, Xl, s, par):
     gVl = g_cw * gV_SM(l, par)
     gAq = g_cw * gA_SM(q, par)
     gAl = g_cw * gA_SM(l, par)
+    # Add SMEFT corrections to couplings
+    gVq += g_cw * smeftew.d_gVl(q, q, par, wcxf)
+    gVl += g_cw * smeftew.d_gVl(l, l, par, wcxf)
+    gAq += g_cw * smeftew.d_gAl(q, q, par, wcxf)
+    gAl += g_cw * smeftew.d_gAl(l, l, par, wcxf)
+
     if Xq == 'L':
         gZq = gVq + gAq
     elif Xq == 'R':
@@ -44,13 +54,13 @@ def F_qqll_SM(q, Xq, l, Xl, s, par):
     return g2*s2w * Qq * Ql / s + gZq * gZl / (s - mZ**2 + 1j * mZ * GammaZ)
 
 
-def wceff_qqll_sm(s, par):
+def wceff_qqll_sm(wc_obj, par, s):
     E = np.einsum('ij,kl->ijkl', np.eye(3), np.eye(3))
     wc = {}
     for Xl in 'LR':
         for Xq in 'LR':
             for q in 'ud':
-                wc['CV{}{}_e{}'.format(Xl, Xq, q)] = F_qqll_SM(q, Xq, 'e', Xl, s, par) * E
+                wc['CV{}{}_e{}'.format(Xl, Xq, q)] = F_qqll_SM(q, Xq, 'e', Xl, s, wc_obj, par) * E
                 #print('Added CV{}{}_e{} to wc'.format(Xl, Xq, q) + ' with value' + str(wc['CV{}{}_e{}'.format(Xl, Xq, q)]) + 'at s =' + str(s))
     wc['CSRL_ed'] = wc['CSRR_ed'] = wc['CSLR_ed'] = wc['CSLL_ed'] = np.zeros((3, 3, 3, 3)) 
     wc['CSRL_eu'] = wc['CSRR_eu'] = wc['CSLR_eu'] = wc['CSLL_eu'] =  np.zeros((3, 3, 3, 3))
@@ -189,7 +199,7 @@ def sigma_llqq_tot_obs(wc_obj, par, E, q):
     s = E**2
     wc_eff_np = wceff_qqll_np(wc_obj, par, scale)
     #print('wc_eff_np =', wc_eff_np)
-    wc_eff_sm = wceff_qqll_sm(s, par)
+    wc_eff_sm = wceff_qqll_sm(wc_obj, par, s)
     wc_eff = add_dict((wc_eff_sm, wc_eff_np))
     #print('wc_eff keys' + str(wc_eff.keys()))
 
@@ -201,7 +211,7 @@ def AFB_llqq_obs(wc_obj, par, E, q):
     s = E**2
     wc_eff_np = wceff_qqll_np(wc_obj, par, scale)
     #print('wc_eff_np =', wc_eff_np)
-    wc_eff_sm = wceff_qqll_sm(s, par)
+    wc_eff_sm = wceff_qqll_sm(wc_obj, par, s)
     wc_eff = add_dict((wc_eff_sm, wc_eff_np))
     #print('wc_eff keys' + str(wc_eff.keys()))
     A_FB = sigma_llqq_forward_minus_backward(wc_eff, s, q) / sigma_llqq_tot(wc_eff, s, q)
