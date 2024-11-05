@@ -13,6 +13,7 @@ def sigma_eeee_tot(wc_obj, par, E):
     s = E**2
 
     # get the Wilson coefficient dictionary, in a non-redundant basis
+    wcxf = wc_obj.get_wcxf(sector='dB=dL=0', scale=E, par=par, eft='SMEFT', basis='Warsaw up')
     wcxf_dict = wc_obj.get_wcxf(sector='dB=dL=0', scale=E, par=par, eft='SMEFT', basis='Warsaw up').dict
 
     # Get the Wilson coefficients that contribute to Bhabha scattering, categorised by chirality
@@ -38,6 +39,9 @@ def sigma_eeee_tot(wc_obj, par, E):
     gVe =  g_cw * gV_SM('e', par)
     gAe =  g_cw * gA_SM('e', par)
     # Add SMEFT contributions to the electron couplings
+    gVe += g_cw * smeftew.d_gVl('e', 'e', par, wcxf)
+    gAe += g_cw * smeftew.d_gAl('e', 'e', par, wcxf)
+
 
     geX_dict = {'L': gVe + gAe, 'R': gVe - gAe}
     # For faster evaluation, define the squares and product of the Z couplings
@@ -85,7 +89,7 @@ def sigma_eeee_tot(wc_obj, par, E):
     # Add all contributions together to get the total cross-section
     for key, value in contributions.items():
         sigma += 1 / (16 * pi * s**2) * value
-        #print('Added', key, 'to total cross-section with value', value)
+        print('Added', key, 'to total cross-section with value', value)
 
     return sigma
 
@@ -167,7 +171,7 @@ def AFB_eeee(wc_obj, par, E):
 
     for key, value in contributions.items():
         sigma_FB += 1 / (16 * pi * s**2) * value  
-        #print('Added', key, 'to total cross-section with value', value)
+        print('Added', key, 'to total cross-section with value', value)
 
     sigma_tot = sigma_eeee_tot(wc_obj, par, E) # Get the total cross-section
 
@@ -208,4 +212,4 @@ _obs.tex = r"$" + _process_tex + r"$"
 _obs.add_taxonomy(_process_taxonomy)
 
 Prediction(_obs_name, AFB_eeee)
-print("Prediction for ", _obs_name, "added")
+#print("Prediction for ", _obs_name, "added")
