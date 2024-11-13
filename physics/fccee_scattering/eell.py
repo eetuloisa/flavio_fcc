@@ -1,5 +1,6 @@
-#from flavio.math.integrate import nintegrate
-from flavio.physics.zdecays.smeftew import gV_SM, gA_SM, _QN
+r"""Functions for the process $e^+e^- \to l^+l^-$ for l != e."""
+# Written by Eetu Loisa, 2024
+from flavio.physics.zdecays.smeftew import gV_SM, gA_SM
 import flavio.physics.zdecays.smeftew as smeftew
 from flavio.physics.common import add_dict
 from flavio.classes import Observable, Prediction
@@ -32,7 +33,6 @@ def F_eell_SM(l1, Xl1, l2, Xl2, s, wc_obj, par):
     par = par.copy()
     par['s2w'] = s2w
     # SM couplings
-    #Qq = _QN[q]['Q']
     gVl1 = g_cw * gV_SM(l1, par)
     gVl2 = g_cw * gV_SM(l2, par)
     gAl1 = g_cw * gA_SM(l1, par)
@@ -61,7 +61,7 @@ def wceff_eell_sm(wc_obj, par, s):
         for Xl2 in 'LR':
             wc['CV{}{}_mu'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'e', Xl2, s, wc_obj, par) 
             wc['CV{}{}_tau'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'e', Xl2, s, wc_obj, par) 
-            print('Added CV{}{}_l to wc'.format(Xl1, Xl2) + ' with value' + str(wc['CV{}{}_mu'.format(Xl1, Xl2)]) + 'at s =' + str(s))
+            #print('Added CV{}{}_l to wc'.format(Xl1, Xl2) + ' with value' + str(wc['CV{}{}_mu'.format(Xl1, Xl2)]) + 'at s =' + str(s))
     return wc
 
 
@@ -146,8 +146,8 @@ def sigma_eell_tot(wc_dict, s, l):
             key = 'VV{}{}_{}'.format(X, Y, l)
             if key in f_integrated:
                 sigma += 1 / (16 * pi * s**2) * f_integrated['VV{}{}_{}'.format(X, Y, l)](s) * np.abs(wc_dict['CV{}{}_{}'.format(X,Y,l)])**2 
-                print('Added', key, 'to total cross-section')
-                print('sigma =', sigma, 'at this point')
+                #print('Added', key, 'to total cross-section')
+                #print('sigma =', sigma, 'at this point')
     # Return total cross-section
     sigma += 1 / (16 * pi * s**2) * f_integrated['non_interfering_{}'.format(l)](s) * np.abs(wc_dict['C_non_interfering_{}'.format(l)])**2
     return sigma
@@ -172,8 +172,8 @@ def sigma_eell_forward_minus_backward(wc_dict, s, l):
             key = 'VV{}{}_{}'.format(X, Y, l)
             if key in f_integrated:
                 sigma += 1 / (16 * pi * s**2) * f_integrated_AFB['VV{}{}_{}'.format(X, Y, l)](s) * np.abs(wc_dict['CV{}{}_{}'.format(X,Y,l)])**2 
-                print('Added', key, 'to F minus B')
-                print(' =', sigma, 'at this point')
+                #print('Added', key, 'to F minus B')
+                #print(' =', sigma, 'at this point')
     # Return total cross-section
     return sigma
 
@@ -185,7 +185,7 @@ def sigma_eell_tot_obs(wc_obj, par, E, l):
     #print('wc_eff_np =', wc_eff_np)
     wc_eff_sm = wceff_eell_sm(wc_obj, par, s)
     wc_eff = add_dict((wc_eff_sm, wc_eff_np))
-    print('wc_eff keys' + str(wc_eff.keys()))
+    #print('wc_eff keys' + str(wc_eff.keys()))
 
     return np.real(sigma_eell_tot(wc_eff, s, l))
 
@@ -197,7 +197,7 @@ def AFB_eell_obs(wc_obj, par, E, l):
     #print('wc_eff_np =', wc_eff_np)
     wc_eff_sm = wceff_eell_sm(wc_obj, par, s)
     wc_eff = add_dict((wc_eff_sm, wc_eff_np))
-    print('wc_eff keys' + str(wc_eff.keys()))
+    #print('wc_eff keys' + str(wc_eff.keys()))
 
     A_FB = sigma_eell_forward_minus_backward(wc_eff, s, l) / sigma_eell_tot(wc_eff, s, l)
 
@@ -231,7 +231,7 @@ for l in _tex:
     _obs.add_taxonomy(_process_taxonomy)
     
     Prediction(_obs_name, generate_sigma_obs(l))
-    print("Prediction for ", _obs_name, "added")
+    #print("Prediction for ", _obs_name, "added")
 
 # Create the observables and predictions for the forward-backward asymmetry
 for l in _tex:
@@ -244,4 +244,4 @@ for l in _tex:
     _obs.add_taxonomy(_process_taxonomy)
     
     Prediction(_obs_name, generate_afb_obs(l))
-    print("Prediction for ", _obs_name, "added")
+    #print("Prediction for ", _obs_name, "added")

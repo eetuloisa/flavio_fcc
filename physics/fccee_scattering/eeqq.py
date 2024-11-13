@@ -1,9 +1,10 @@
-#from flavio.math.integrate import nintegrate
+r"""Functions for the process $e^+e^-\to q\bar q$."""
+# Written by Eetu Loisa, 2024
 from flavio.physics.zdecays.smeftew import gV_SM, gA_SM, _QN
+import flavio.physics.zdecays.smeftew as smeftew
 from flavio.physics.common import add_dict
 from flavio.classes import Observable, Prediction
 from flavio.physics import ckm as ckm_flavio
-#from . import partondist
 import wilson
 from numpy import pi, sqrt
 import numpy as np
@@ -37,10 +38,10 @@ def F_qqll_SM(q, Xq, l, Xl, s, wc_obj, par):
     gAq = g_cw * gA_SM(q, par)
     gAl = g_cw * gA_SM(l, par)
     # Add SMEFT corrections to couplings
-    gVq += g_cw * smeftew.d_gVl(q, q, par, wcxf)
-    gVl += g_cw * smeftew.d_gVl(l, l, par, wcxf)
-    gAq += g_cw * smeftew.d_gAl(q, q, par, wcxf)
-    gAl += g_cw * smeftew.d_gAl(l, l, par, wcxf)
+    gVq += g_cw * smeftew.d_gV(q, q, par, wcxf)
+    gVl += g_cw * smeftew.d_gV(l, l, par, wcxf)
+    gAq += g_cw * smeftew.d_gA(q, q, par, wcxf)
+    gAl += g_cw * smeftew.d_gA(l, l, par, wcxf)
 
     if Xq == 'L':
         gZq = gVq + gAq
@@ -246,7 +247,7 @@ for q in _tex:
     _obs.add_taxonomy(_process_taxonomy)
     
     Prediction(_obs_name, generate_sigma_obs(q))
-    print("Prediction for ", _obs_name, "added")
+    #print("Prediction for ", _obs_name, "added")
 
 # Create the observables and predictions for the forward-backward asymmetry
 for q in _tex:
@@ -259,4 +260,4 @@ for q in _tex:
     _obs.add_taxonomy(_process_taxonomy)
     
     Prediction(_obs_name, generate_afb_obs(q))
-    print("Prediction for ", _obs_name, "added")
+    #print("Prediction for ", _obs_name, "added")

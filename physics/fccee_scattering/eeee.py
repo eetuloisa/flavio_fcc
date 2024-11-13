@@ -1,4 +1,5 @@
-#from flavio.math.integrate import nintegrate
+r"""Functions for the process $e^+e^- \to e^+e^-$."""
+# Written by Eetu Loisa, 2024
 from flavio.physics.zdecays.smeftew import gV_SM, gA_SM
 import flavio.physics.zdecays.smeftew as smeftew
 from flavio.physics.common import add_dict
@@ -90,7 +91,7 @@ def sigma_eeee_tot(wc_obj, par, E):
     # Add all contributions together to get the total cross-section
     for key, value in contributions.items():
         sigma += 1 / (16 * pi * s**2) * value
-        print('Added', key, 'to total cross-section with value', value)
+        #print('Added', key, 'to total cross-section with value', value)
 
     return sigma
 
@@ -172,7 +173,7 @@ def AFB_eeee(wc_obj, par, E):
 
     for key, value in contributions.items():
         sigma_FB += 1 / (16 * pi * s**2) * value  
-        print('Added', key, 'to total cross-section with value', value)
+        #print('Added', key, 'to total cross-section with value', value)
 
     sigma_tot = sigma_eeee_tot(wc_obj, par, E) # Get the total cross-section
 
