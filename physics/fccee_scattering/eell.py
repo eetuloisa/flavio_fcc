@@ -59,8 +59,8 @@ def wceff_eell_sm(wc_obj, par, s):
     wc = {}
     for Xl1 in 'LR':
         for Xl2 in 'LR':
-            wc['CV{}{}_mu'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'e', Xl2, s, wc_obj, par) 
-            wc['CV{}{}_tau'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'e', Xl2, s, wc_obj, par) 
+            wc['CV{}{}_mu'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'mu', Xl2, s, wc_obj, par) 
+            wc['CV{}{}_tau'.format(Xl1, Xl2)] = F_eell_SM('e', Xl1, 'tau', Xl2, s, wc_obj, par) 
             #print('Added CV{}{}_l to wc'.format(Xl1, Xl2) + ' with value' + str(wc['CV{}{}_mu'.format(Xl1, Xl2)]) + 'at s =' + str(s))
     return wc
 
