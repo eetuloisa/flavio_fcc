@@ -95,9 +95,11 @@ def vv_h(C):
           )
     return 1 + 1e6 * np.real
 
-##################################
-### FCCee production processes ###
-##################################
+###############################################
+###       FCCee production processes        ###
+### Computed with MadGraph_aMC and smeftsim ###
+###         by Eetu Loisa, 2024             ###
+###############################################
 
 def hz_fccee240(C):
     r"""Higgs production associated with a Z boson normalised to the SM at FCC-ee at 240 GeV"""
