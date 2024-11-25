@@ -83,7 +83,7 @@ def sigma_eeee_tot(wc_obj, par, E):
         geX = geX_dict[X]
         geX2 = geX**2 # Define powers of couplings to speed up evaluation
         geX4 = geX**4
-        CXY = wc_4e[f'{X}{X}'] 
+        CXY = wc_4e[f'{X}{X}'] / 2
         contributions[f'ST_{X}{X}'] = 2*np.real((((27*s*(3*e2*s + geX2*(2*mZ*((-1j)*GammaZ + mZ) + 3*s)))/10. - (6j)*geX2*((-1j)*GammaZ*mZ + mZ2 + s)**2*np.arctan((360*GammaZ*mZ*s)/(400*mZ**4 + 19*s**2 + 400*mZ2*(GammaZ2 + s))) + (3429*s**3*np.conjugate(CXY))/1000. - 6*e2*s**2*np.log(19) + 3*geX2*((-1j)*GammaZ*mZ + mZ2 + s)**2*np.log((GammaZ2*mZ2 + (mZ2 + s/20.)**2)/(GammaZ2*mZ2 + (mZ2 + (19*s)/20.)**2)))*F_eeee_s_channel(wc_4e, X, X, s))/6.)
 
     sigma = 0
@@ -166,7 +166,7 @@ def AFB_eeee(wc_obj, par, E):
         geX = geX_dict[X]
         geX2 = geX**2 # Define powers of couplings to speed up evaluation
         geX4 = geX**4
-        CXY = wc_4e[f'{X}{X}'] 
+        CXY = wc_4e[f'{X}{X}'] / 2
         contributions[f'ST_{X}{X}'] = 2*np.real(((162*(e2 + geX2)*s**2 - (800j)*geX2*((-1j)*GammaZ*mZ + mZ2 + s)**2*np.arctan((18*GammaZ*mZ*s)/(40*mZ**4 + s**2 + mZ2*(40*GammaZ2 + 22*s))) + 324*s**3*np.conjugate(CXY) + 400*((2j)*geX2*((-1j)*GammaZ*mZ + mZ2 + s)**2*np.arctan((18*GammaZ*mZ*s)/(40*mZ**4 + 19*s**2 + mZ2*(40*GammaZ2 + 58*s))) - 2*e2*s**2*np.log(5.2631578947368425) + geX2*((-1j)*GammaZ*mZ + mZ2 + s)**2*(np.log(GammaZ2*mZ2 + (mZ2 + s/20.)**2) - 2*np.log(GammaZ2*mZ2 + (mZ2 + s/2.)**2) + np.log(GammaZ2*mZ2 + (mZ2 + (19*s)/20.)**2))))*F_eeee_s_channel(wc_4e,X,X,s))/800.)
 
     sigma_FB = 0 #Forward - backward cross-section

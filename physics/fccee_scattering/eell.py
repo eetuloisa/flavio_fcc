@@ -52,6 +52,8 @@ def F_eell_SM(l1, Xl1, l2, Xl2, s, wc_obj, par):
     elif Xl2 == 'R':
         gZl2 = gVl2 - gAl2
     # SM contribution
+    print("SM photon contribution: ", g2*s2w * Ql * Ql / s)
+    print("SM Z contribution: ", gZl1 * gZl2 / (s - mZ**2 + 1j * mZ * GammaZ))
     return g2*s2w * Ql * Ql / s + gZl1 * gZl2 / (s - mZ**2 + 1j * mZ * GammaZ)
 
 # This is sm-like in the sense that it only uses SM-like vertices; but the Zff couplings are modified by SMEFT corrections
@@ -76,10 +78,14 @@ def wceff_eell_np(wc_obj, par, scale):
     # match to notation used in the observable
     # Note that the approach here is slightly different from flavio.physics.dileptons.ppll.py in that we add hermitian conjugates explicitly into the wc dictionary
     # CVXX_l (8 entries, 4 for each lepton):
-    wc['CVLL_mu'] = wcxf_dict.get('ll_1122',0) +  wcxf_dict.get('ll_1221',0)
-    wc['CVRR_mu'] = wcxf_dict.get('ee_1122',0)
+    wc['CVLL_mu'] =  wcxf_dict.get('ll_1122',0) +  wcxf_dict.get('ll_1221',0)
+    print('CVLL_mu =', wc['CVLL_mu'])
+    wc['CVRR_mu'] =  wcxf_dict.get('ee_1122',0)
+    print('CVRR_mu =', wc['CVRR_mu'])
     wc['CVLR_mu'] = wcxf_dict.get('le_1122',0)
+    print('CVLR_mu =', wc['CVLR_mu'])
     wc['CVRL_mu'] = wcxf_dict.get('le_2211',0)
+    print('CVRL_mu =', wc['CVRL_mu'])
 
     wc['CVLL_tau'] = wcxf_dict.get('ll_1133',0) +  wcxf_dict.get('ll_1331',0)
     wc['CVRR_tau'] = wcxf_dict.get('ee_1133',0)
@@ -146,8 +152,8 @@ def sigma_eell_tot(wc_dict, s, l):
             key = 'VV{}{}_{}'.format(X, Y, l)
             if key in f_integrated:
                 sigma += 1 / (16 * pi * s**2) * f_integrated['VV{}{}_{}'.format(X, Y, l)](s) * np.abs(wc_dict['CV{}{}_{}'.format(X,Y,l)])**2 
-                #print('Added', key, 'to total cross-section')
-                #print('sigma =', sigma, 'at this point')
+                print('Added', key, 'to total cross-section')
+                print('sigma =', sigma, 'at this point')
     # Return total cross-section
     sigma += 1 / (16 * pi * s**2) * f_integrated['non_interfering_{}'.format(l)](s) * np.abs(wc_dict['C_non_interfering_{}'.format(l)])**2
     return sigma

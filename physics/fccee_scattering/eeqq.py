@@ -126,7 +126,8 @@ def s_func(s, coefficient):
 f_integrated_ctheta_09 = {}
 f_integrated_ctheta_09['SSLL'] = f_integrated_ctheta_09['SSLR'] = f_integrated_ctheta_09['SSRL'] = f_integrated_ctheta_09['SSRR'] = lambda s: s_func(s, 9/40)
 f_integrated_ctheta_09['VVLL'] = f_integrated_ctheta_09['VVLR'] = f_integrated_ctheta_09['VVRL'] = f_integrated_ctheta_09['VVRR'] = lambda s: s_func(s, 1143/4000)
-f_integrated_ctheta_09['TTLR'] = f_integrated_ctheta_09['TTRL'] = lambda s: s_func(s, 243/250)
+#f_integrated_ctheta_09['TTLR'] = f_integrated_ctheta_09['TTRL'] = lambda s: s_func(s, 243/250)
+f_integrated_ctheta_09['TTLL'] = f_integrated_ctheta_09['TTRR'] = lambda s: s_func(s, 243/250)
 
 # Define a dictionary of the non-zero Dirac traces when integrating over cos(theta) in the range [0, 0.9] MINUS the range [-0.9, 0], to get A_FB
 f_AFB_ctheta_09 = {}
