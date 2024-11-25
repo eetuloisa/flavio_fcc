@@ -1,5 +1,7 @@
 r"""Functions for the process $e^+e^- \to l^+l^-$ for l != e."""
 # Written by Eetu Loisa, 2024
+# partially based on flavio.physics.dileptons by Greljo, Salko, Smolkovic and Stangl
+
 from flavio.physics.zdecays.smeftew import gV_SM, gA_SM
 import flavio.physics.zdecays.smeftew as smeftew
 from flavio.physics.common import add_dict
