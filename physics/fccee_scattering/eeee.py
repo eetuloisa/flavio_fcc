@@ -93,7 +93,6 @@ def sigma_eeee_tot(wc_obj, par, E):
     # Add all contributions together to get the total cross-section
     for key, value in contributions.items():
         sigma += 1 / (16 * pi * s**2) * value
-        #print('Added', key, 'to total cross-section with value', value)
 
     return sigma
 
@@ -175,7 +174,6 @@ def AFB_eeee(wc_obj, par, E):
 
     for key, value in contributions.items():
         sigma_FB += 1 / (16 * pi * s**2) * value  
-        #print('Added', key, 'to total cross-section with value', value)
 
     sigma_tot = sigma_eeee_tot(wc_obj, par, E) # Get the total cross-section
 
@@ -204,7 +202,6 @@ _obs.tex = r"$\sigma(" + _process_tex + r")$"
 _obs.add_taxonomy(_process_taxonomy)
 
 Prediction(_obs_name, generate_sigma_obs())
-#print("Prediction for ", _obs_name, "added")
 
 # Create the observables and predictions for the forward-backward asymmetry
 _process_tex = r"A_{FB}(e^+e^- \to e^+e^-)"
@@ -216,4 +213,3 @@ _obs.tex = r"$" + _process_tex + r"$"
 _obs.add_taxonomy(_process_taxonomy)
 
 Prediction(_obs_name, AFB_eeee)
-#print("Prediction for ", _obs_name, "added")

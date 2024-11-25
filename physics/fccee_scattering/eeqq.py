@@ -158,8 +158,6 @@ def sigma_llqq_tot(wc_eff, s, q):
                 for Y in 'LR':
                     key = '{}{}{}{}'.format(gamma, gammap, X, Y)
                     if key in f_integrated_ctheta_09:
-                        #print('key =', key)
-                        #print('Does this return an integer or an array or something else: ', wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)])
                         sigma += 3 / (16 * pi * s**2) * f_integrated_ctheta_09['{}{}{}{}'.format(gamma, gammap, X, Y)](s) * wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)][0,0,i,i] * np.conjugate(wc_eff['C{}{}{}_e{}'.format(gammap,X,Y,q)][0,0,i,i])
                         #print('Added', key, 'to total cross-section')
                         #print('sigma =', sigma, 'at this point')
@@ -188,8 +186,6 @@ def sigma_llqq_forward_minus_backward(wc_eff, s, q):
                 for Y in 'LR':
                     key = '{}{}{}{}'.format(gamma, gammap, X, Y)
                     if key in f_AFB_ctheta_09:
-                        #print('key =', key)
-                        #print('Does this return an integer or an array or something else: ', wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)])
                         sigma += 3 / (16 * pi * s**2) * f_AFB_ctheta_09['{}{}{}{}'.format(gamma, gammap, X, Y)](s) * wc_eff['C{}{}{}_e{}'.format(gamma,X,Y,q)][0,0,i,i] * np.conjugate(wc_eff['C{}{}{}_e{}'.format(gammap,X,Y,q)][0,0,i,i])
                         #print('Added', key, 'to total cross-section')
                         #print('sigma =', sigma, 'at this point')
@@ -202,10 +198,8 @@ def sigma_llqq_tot_obs(wc_obj, par, E, q):
     scale = E
     s = E**2
     wc_eff_np = wceff_qqll_np(wc_obj, par, scale)
-    #print('wc_eff_np =', wc_eff_np)
     wc_eff_sm = wceff_qqll_sm(wc_obj, par, s)
     wc_eff = add_dict((wc_eff_sm, wc_eff_np))
-    #print('wc_eff keys' + str(wc_eff.keys()))
 
     return np.real(sigma_llqq_tot(wc_eff, s, q))
 
@@ -214,10 +208,8 @@ def AFB_llqq_obs(wc_obj, par, E, q):
     scale = E
     s = E**2
     wc_eff_np = wceff_qqll_np(wc_obj, par, scale)
-    #print('wc_eff_np =', wc_eff_np)
     wc_eff_sm = wceff_qqll_sm(wc_obj, par, s)
     wc_eff = add_dict((wc_eff_sm, wc_eff_np))
-    #print('wc_eff keys' + str(wc_eff.keys()))
     A_FB = sigma_llqq_forward_minus_backward(wc_eff, s, q) / sigma_llqq_tot(wc_eff, s, q)
 
     return np.real(A_FB)
@@ -250,7 +242,6 @@ for q in _tex:
     _obs.add_taxonomy(_process_taxonomy)
     
     Prediction(_obs_name, generate_sigma_obs(q))
-    #print("Prediction for ", _obs_name, "added")
 
 # Create the observables and predictions for the forward-backward asymmetry
 for q in _tex:
@@ -263,4 +254,3 @@ for q in _tex:
     _obs.add_taxonomy(_process_taxonomy)
     
     Prediction(_obs_name, generate_afb_obs(q))
-    #print("Prediction for ", _obs_name, "added")
