@@ -22901,39 +22901,39 @@ FCCee 240 GeV Higgs 5/ab:
   experiment: FCCee
   inspire: deBlas:2022ofj
   description: FCCee projections using SM central values but with FCCee uncertainties projected for the 240 GeV run.
-  values:
-    mu_Zh_FCCee240(h->bb): 1 +- 0.003
-    mu_Zh_FCCee240(h->cc): 1 +- 0.022
-    mu_Zh_FCCee240(h->gg): 1 +- 0.019
-    mu_Zh_FCCee240(h->ZZ): 1 +- 0.044
-    mu_Zh_FCCee240(h->WW): 1 +- 0.012
-    mu_Zh_FCCee240(h->tautau): 1 +- 0.009
-    mu_Zh_FCCee240(h->gammagamma): 1 +- 0.09
-    mu_Zh_FCCee240(h->Zgamma): 1 +- 0.17
-    mu_Zh_FCCee240(h->mumu): 1 +- 0.19
-    mu_hnunu_FCCee240(h->bb): 1 +- 0.031
+  values: # First error: experimental, second: intrinsic error in production, third: intrinsic error in decay, fourth and higher: parametric errors in decay
+    mu_Zh_FCCee240(h->bb): 1 +- 0.003 +- 0.003 +- 0.002 +- 0.006 +- 0.001
+    mu_Zh_FCCee240(h->cc): 1 +- 0.022 +- 0.003 +- 0.002 +- 0.01 +- 0.001
+    mu_Zh_FCCee240(h->gg): 1 +- 0.019 +- 0.003 +- 0.01 +- 0.005
+    mu_Zh_FCCee240(h->ZZ): 1 +- 0.044 +- 0.003 +- 0.003 +- 0.001
+    mu_Zh_FCCee240(h->WW): 1 +- 0.012 +- 0.003 +- 0.003 +- 0.001
+    mu_Zh_FCCee240(h->tautau): 1 +- 0.009 +- 0.003 +- 0.001
+    mu_Zh_FCCee240(h->gammagamma): 1 +- 0.09 +- 0.003 +- 0.01
+    mu_Zh_FCCee240(h->Zgamma): 1 +- 0.17 +- 0.003 +- 0.01 +- 0.001
+    mu_Zh_FCCee240(h->mumu): 1 +- 0.19 +- 0.003 +- 0.001
+    mu_hnunu_FCCee240(h->bb): 1 +- 0.031 +- 0.01 +- 0.002 +- 0.006 +- 0.001
 
 FCCee 365 GeV Higgs 1_5/ab:
   experiment: FCCee
   inspire: deBlas:2022ofj
   description: FCCee projections using SM central values but with FCCee uncertainties projected for the 365 GeV run.
-  values:
-    mu_Zh_FCCee365(h->bb): 1 +- 0.005
-    mu_Zh_FCCee365(h->cc): 1 +- 0.065
-    mu_Zh_FCCee365(h->gg): 1 +- 0.035
-    mu_Zh_FCCee365(h->ZZ): 1 +- 0.12
-    mu_Zh_FCCee365(h->WW): 1 +- 0.026
-    mu_Zh_FCCee365(h->tautau): 1 +- 0.018
-    mu_Zh_FCCee365(h->gammagamma): 1 +- 0.18
-    mu_Zh_FCCee365(h->mumu): 1 +- 0.40
-    mu_hnunu_FCCee365(h->bb): 1 +- 0.009
-    mu_hnunu_FCCee365(h->cc): 1 +- 0.10
-    mu_hnunu_FCCee365(h->gg): 1 +- 0.045
-    mu_hnunu_FCCee365(h->ZZ): 1 +- 0.10
-    mu_hnunu_FCCee365(h->WW): 1 +- 0.036
-    mu_hnunu_FCCee365(h->tautau): 1 +- 0.08
-    mu_hnunu_FCCee365(h->gammagamma): 1 +- 0.22
-    mu_hnunu_FCCee365(h->mumu): 1 +- 1
+  values: # First error: experimental, second: intrinsic error in production, third: intrinsic error in decay, fourth and higher: parametric errors in decay
+    mu_Zh_FCCee365(h->bb): 1 +- 0.005 +- 0.003 +- 0.002 +- 0.006 +- 0.001
+    mu_Zh_FCCee365(h->cc): 1 +- 0.065 +- 0.003 +- 0.002 +- 0.01 +- 0.001
+    mu_Zh_FCCee365(h->gg): 1 +- 0.035 +- 0.003 +- 0.01 +- 0.005
+    mu_Zh_FCCee365(h->ZZ): 1 +- 0.12 +- 0.003  +- 0.003 +- 0.001
+    mu_Zh_FCCee365(h->WW): 1 +- 0.026 +- 0.003 +- 0.003 +- 0.001
+    mu_Zh_FCCee365(h->tautau): 1 +- 0.018 +- 0.003 +- 0.001
+    mu_Zh_FCCee365(h->gammagamma): 1 +- 0.18 +- 0.003 +- 0.01
+    mu_Zh_FCCee365(h->mumu): 1 +- 0.40 +- 0.003 +- 0.001
+    mu_hnunu_FCCee365(h->bb): 1 +- 0.009 +- 0.01 +- 0.002 +- 0.006 +- 0.001
+    mu_hnunu_FCCee365(h->cc): 1 +- 0.10 +- 0.01 +- 0.002 +- 0.01 +- 0.001
+    mu_hnunu_FCCee365(h->gg): 1 +- 0.045 +- 0.01 +- 0.01 +- 0.005
+    mu_hnunu_FCCee365(h->ZZ): 1 +- 0.10 +- 0.01 +- 0.003 +- 0.001
+    mu_hnunu_FCCee365(h->WW): 1 +- 0.036 +- 0.01 +- 0.003 +- 0.001
+    mu_hnunu_FCCee365(h->tautau): 1 +- 0.08 +- 0.01 +- 0.001
+    mu_hnunu_FCCee365(h->gammagamma): 1 +- 0.22 +- 0.01 +- 0.01
+    mu_hnunu_FCCee365(h->mumu): 1 +- 1 +- 0.01 +- 0.001
 
       #FCCee EWPO experiment-centred:
       #  experiment: FCCee
@@ -22971,16 +22971,11 @@ FCCee Z-pole EWPO SM-centred:
     R_e: 20.736 ± 0.00008 ± 0.006
     R_mu: 20.736 ± 0.00006 ± 0.001
     R_tau: 20.783 ± 0.00006 ± 0.002
-    #AFB(Z->ee):  
-    #AFB(Z->mumu): 
-    #AFB(Z->tautau): 
     A(Z->ee): 0.1477 ± 0.000007 ± 0.00002
     A(Z->mumu): 0.1477 ± 0.000023 ± 0.000022
     A(Z->tautau): 0.1477 ± 0.000005 ± 0.0002
     R_b: 0.21583 ± 0.00000030 ± 0.00006
     R_c: 0.17222 ± 0.0000026 ± 0.00006
-    #AFB(Z->bb):
-    #AFB(Z->cc):
     A(Z->bb): 0.9348 ± 0.000024 ± 0.00021
     A(Z->cc): 0.6678 ± 0.0002 ± 0.00015
     GammaW: 2.092 ± 0.0012 ± 0.0003
