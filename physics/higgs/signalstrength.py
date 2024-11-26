@@ -137,7 +137,6 @@ def make_obs_higgs(name_prod, name_dec):
         return higgs_signalstrength(wc_obj, par, name_prod, name_dec)
 
     flavio.classes.Prediction(obs_name, obs_fct)
-    print(obs_name) # Helper function that should be removed from final version
 
 
 for prod in prod_modes:
