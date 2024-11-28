@@ -22964,88 +22964,88 @@ FCCee Z-pole EWPO SM-centred:
   experiment: FCCee
   inspire: deBlas:2022ofj, ParticleDataGroup:2022pth
   description: FCCee projections using SM predictions but with FCCee uncertainties. 
-  values:
-    m_W: 80.3551 ± 0.00025 ± 0.00030
+  values: # values +- stat +- syst +- theory errors
+    m_W: 80.3551 ± 0.00025 ± 0.00030 
     GammaZ: 2.49409 ± 0.000004 ± 0.000025
     sigma_had: 1065.36 ± 0.0009 ± 0.1 e-7
-    R_e: 20.736 ± 0.00008 ± 0.006
-    R_mu: 20.736 ± 0.00006 ± 0.001
-    R_tau: 20.783 ± 0.00006 ± 0.002
-    A(Z->ee): 0.1477 ± 0.000007 ± 0.00002
-    A(Z->mumu): 0.1477 ± 0.000023 ± 0.000022
-    A(Z->tautau): 0.1477 ± 0.000005 ± 0.0002
-    R_b: 0.21583 ± 0.00000030 ± 0.00006
-    R_c: 0.17222 ± 0.0000026 ± 0.00006
-    A(Z->bb): 0.9348 ± 0.000024 ± 0.00021
-    A(Z->cc): 0.6678 ± 0.0002 ± 0.00015
-    GammaW: 2.092 ± 0.0012 ± 0.0003
+    R_e: 20.73564 ± 0.00008 ± 0.006
+    R_mu: 20.73564 ± 0.00006 ± 0.001
+    R_tau: 20.78266 ± 0.00006 ± 0.002
+    A(Z->ee): 0.1476566 ± 0.000007 ± 0.00002
+    A(Z->mumu): 0.1476566 ± 0.000023 ± 0.000022
+    A(Z->tautau): 0.1476566 ± 0.000005 ± 0.0002
+    R_b: 0.215826 ± 0.00000030 ± 0.00006
+    R_c: 0.172220 ± 0.0000026 ± 0.00006
+    A(Z->bb): 0.93476 ± 0.000024 ± 0.00021
+    A(Z->cc): 0.66778 ± 0.0002 ± 0.00015
+    GammaW: 2.09174 ± 0.0012 ± 0.0003
 
 FCCee off-Z-pole EWPO SM-centred:
   experiment: FCCee
   inspire: deBlas:2022ofj 
   description: FCCee projections using SM predictions but with FCCee uncertainties. 
-  values:
+  values: #value +- exp +- theory
     # quarks
     - name: sigma(ee->cc)(high_E)
       E: 240
-      value: 2.244 ± 0.0033 e-10
+      value: 2.2437 ± 0.0033 ± 0.0033 e-10
     - name: sigma(ee->cc)(high_E)
       E: 365
-      value: 9.198 ± 0.038 e-11
+      value: 9.1984 ± 0.038 ± 0.038 e-11
     - name: sigma(ee->bb)(high_E)
       E: 240
-      value: 6.445 ± 0.0055 e-10
+      value: 6.4454 ± 0.0055 ± 0.0055 e-10
     - name: sigma(ee->bb)(high_E)
       E: 365
-      value: 2.467 ± 0.0062 e-10
+      value: 2.4668 ± 0.0062 ± 0.0062 e-10
     - name: AFB(ee->cc)(high_E)
       E: 240
-      value: 0.6138 ± 0.0012
+      value: 0.61385 ± 0.0012 ± 0.0012
     - name: AFB(ee->cc)(high_E)
       E: 365
-      value: 0.5890 ± 0.0034
+      value: 0.58905 ± 0.0034 ± 0.0034
     - name: AFB(ee->bb)(high_E)
       E: 240
-      value: 0.58146 ± 0.00069
+      value: 0.581455 ± 0.00069 ± 0.00069
     - name: AFB(ee->bb)(high_E)
       E: 365
-      value: 0.5936 ± 0.0020
+      value: 0.59357 ± 0.0020 ± 0.0020
     # leptons != ee
     - name: sigma(ee->mumu)(high_E)
       E: 240
-      value: 4.7418 ± 0.0016 e-9
+      value: 4.7418 ± 0.0016 ± 0.0016 e-9
     - name: sigma(ee->mumu)(high_E)
       E: 365
-      value: 1.9997 ± 0.0018 e-9
+      value: 1.9997 ± 0.0018 ± 0.0018 e-9
     - name: sigma(ee->tautau)(high_E)
       E: 240
-      value: 4.0278 ± 0.0013 e-9
+      value: 4.0278 ± 0.0013 ± 0.0013 e-9
     - name: sigma(ee->tautau)(high_E)
       E: 365
-      value: 1.6985 ± 0.0017 e-9
+      value: 1.6985 ± 0.0017 ± 0.0017 e-9
     - name: AFB(ee->mumu)(high_E)
       E: 240
-      value: 0.51301 ± 0.00027
+      value: 0.51301 ± 0.00027 ± 0.00027
     - name: AFB(ee->mumu)(high_E)
       E: 365
-      value: 0.47981 ± 0.00079
+      value: 0.47981 ± 0.00079 ± 0.00079
     - name: AFB(ee->tautau)(high_E)
       E: 240
-      value: 0.49781 ± 0.00030
+      value: 0.49781 ± 0.00030 ± 0.00030
     - name: AFB(ee->tautau)(high_E)
       E: 365
-      value: 0.46559 ± 0.00087
+      value: 0.46559 ± 0.00087 ± 0.00087
     # ee final state
     - name: sigma(ee->ee)(high_E)
       E: 240
-      value: 1.776066 ± 0.000089 e-7
+      value: 1.776066 ± 0.000089 ± 0.000089 e-7
     - name: sigma(ee->ee)(high_E)
       E: 365
-      value: 7.6977 ± 0.0011 e-8
+      value: 7.6977 ± 0.0011 ± 0.0011 e-8
     - name: AFB(ee->ee)(high_E)
       E: 240
-      value: 0.956582 ± 0.000014
+      value: 0.956582 ± 0.000014 ± 0.000014
     - name: AFB(ee->ee)(high_E)
       E: 365
-      value: 0.958615 ± 0.000040
+      value: 0.958615 ± 0.000040 ± 0.000040
 
