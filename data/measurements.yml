@@ -22897,43 +22897,37 @@ LHCb Bs->K*mumu 2018:
 ### FCCee measurements by Eetu Loisa 2024 ###
 #############################################
 
-FCCee 240 GeV Higgs 5/ab:
+  FCCee 240 and 365 GeV Higgs 5/ab and 1_5/ab:
   experiment: FCCee
   inspire: deBlas:2022ofj
-  description: FCCee projections using SM central values but with FCCee uncertainties projected for the 240 GeV run.
-  values: # First error: experimental, second: intrinsic error in production, third: intrinsic error in decay, fourth and higher: parametric errors in decay
-    mu_Zh_FCCee240(h->bb): 1 +- 0.003 +- 0.003 +- 0.002 +- 0.006 +- 0.001
-    mu_Zh_FCCee240(h->cc): 1 +- 0.022 +- 0.003 +- 0.002 +- 0.01 +- 0.001
-    mu_Zh_FCCee240(h->gg): 1 +- 0.019 +- 0.003 +- 0.01 +- 0.005
-    mu_Zh_FCCee240(h->ZZ): 1 +- 0.044 +- 0.003 +- 0.003 +- 0.001
-    mu_Zh_FCCee240(h->WW): 1 +- 0.012 +- 0.003 +- 0.003 +- 0.001
-    mu_Zh_FCCee240(h->tautau): 1 +- 0.009 +- 0.003 +- 0.001
-    mu_Zh_FCCee240(h->gammagamma): 1 +- 0.09 +- 0.003 +- 0.01
-    mu_Zh_FCCee240(h->Zgamma): 1 +- 0.17 +- 0.003 +- 0.01 +- 0.001
-    mu_Zh_FCCee240(h->mumu): 1 +- 0.19 +- 0.003 +- 0.001
-    mu_hnunu_FCCee240(h->bb): 1 +- 0.031 +- 0.01 +- 0.002 +- 0.006 +- 0.001
-
-FCCee 365 GeV Higgs 1_5/ab:
-  experiment: FCCee
-  inspire: deBlas:2022ofj
-  description: FCCee projections using SM central values but with FCCee uncertainties projected for the 365 GeV run.
-  values: # First error: experimental, second: intrinsic error in production, third: intrinsic error in decay, fourth and higher: parametric errors in decay
-    mu_Zh_FCCee365(h->bb): 1 +- 0.005 +- 0.003 +- 0.002 +- 0.006 +- 0.001
-    mu_Zh_FCCee365(h->cc): 1 +- 0.065 +- 0.003 +- 0.002 +- 0.01 +- 0.001
-    mu_Zh_FCCee365(h->gg): 1 +- 0.035 +- 0.003 +- 0.01 +- 0.005
-    mu_Zh_FCCee365(h->ZZ): 1 +- 0.12 +- 0.003  +- 0.003 +- 0.001
-    mu_Zh_FCCee365(h->WW): 1 +- 0.026 +- 0.003 +- 0.003 +- 0.001
-    mu_Zh_FCCee365(h->tautau): 1 +- 0.018 +- 0.003 +- 0.001
-    mu_Zh_FCCee365(h->gammagamma): 1 +- 0.18 +- 0.003 +- 0.01
-    mu_Zh_FCCee365(h->mumu): 1 +- 0.40 +- 0.003 +- 0.001
-    mu_hnunu_FCCee365(h->bb): 1 +- 0.009 +- 0.01 +- 0.002 +- 0.006 +- 0.001
-    mu_hnunu_FCCee365(h->cc): 1 +- 0.10 +- 0.01 +- 0.002 +- 0.01 +- 0.001
-    mu_hnunu_FCCee365(h->gg): 1 +- 0.045 +- 0.01 +- 0.01 +- 0.005
-    mu_hnunu_FCCee365(h->ZZ): 1 +- 0.10 +- 0.01 +- 0.003 +- 0.001
-    mu_hnunu_FCCee365(h->WW): 1 +- 0.036 +- 0.01 +- 0.003 +- 0.001
-    mu_hnunu_FCCee365(h->tautau): 1 +- 0.08 +- 0.01 +- 0.001
-    mu_hnunu_FCCee365(h->gammagamma): 1 +- 0.22 +- 0.01 +- 0.01
-    mu_hnunu_FCCee365(h->mumu): 1 +- 1 +- 0.01 +- 0.001
+  description: FCCee projections using SM central values but with FCCee uncertainties projected for the 240 and 365 GeV runs.
+  values: # First error: experimental, second: intrinsic error in production, third: combined intrinsic and parametric error in decay, fourth: intrinsic error in Higgs width, higher: parametric errors in decay (if they are large enough)
+    mu_Zh_FCCee240(h->bb): 1 +- 0.003 +- 0.003 +- 0.002 +- 0.005 +- 0.006 
+    mu_Zh_FCCee240(h->cc): 1 +- 0.022 +- 0.003 +- 0.002 +- 0.005 +- 0.01 
+    mu_Zh_FCCee240(h->gg): 1 +- 0.019 +- 0.003 +- 0.01 +- 0.005 +- 0.005
+    mu_Zh_FCCee240(h->ZZ): 1 +- 0.044 +- 0.003 +- 0.003 +- 0.005
+    mu_Zh_FCCee240(h->WW): 1 +- 0.012 +- 0.003 +- 0.003 +- 0.005 
+    mu_Zh_FCCee240(h->tautau): 1 +- 0.009 +- 0.003 +- 0.001 +- 0.005
+    mu_Zh_FCCee240(h->gammagamma): 1 +- 0.09 +- 0.003 +- 0.01 +- 0.005 
+    mu_Zh_FCCee240(h->Zgamma): 1 +- 0.17 +- 0.003 +- 0.01 +- 0.005
+    mu_Zh_FCCee240(h->mumu): 1 +- 0.19 +- 0.003 +- 0.001 +- 0.005
+    mu_hnunu_FCCee240(h->bb): 1 +- 0.031 +- 0.01 +- 0.002 +- 0.005 +- 0.006 
+    mu_Zh_FCCee365(h->bb): 1 +- 0.005 +- 0.003 +- 0.002 +- 0.005 +- 0.006
+    mu_Zh_FCCee365(h->cc): 1 +- 0.065 +- 0.003 +- 0.002 +- 0.005 +- 0.01 
+    mu_Zh_FCCee365(h->gg): 1 +- 0.035 +- 0.003 +- 0.01 +- 0.005 +- 0.005
+    mu_Zh_FCCee365(h->ZZ): 1 +- 0.12 +- 0.003  +- 0.003 +- 0.005
+    mu_Zh_FCCee365(h->WW): 1 +- 0.026 +- 0.003 +- 0.003 +- 0.005
+    mu_Zh_FCCee365(h->tautau): 1 +- 0.018 +- 0.003 +- 0.001 +- 0.005
+    mu_Zh_FCCee365(h->gammagamma): 1 +- 0.18 +- 0.003 +- 0.01 +- 0.005
+    mu_Zh_FCCee365(h->mumu): 1 +- 0.40 +- 0.003 +- 0.001 +- 0.005
+    mu_hnunu_FCCee365(h->bb): 1 +- 0.009 +- 0.01 +- 0.002 +- 0.005 +- 0.006 
+    mu_hnunu_FCCee365(h->cc): 1 +- 0.10 +- 0.01 +- 0.002 +- 0.005 +- 0.01 
+    mu_hnunu_FCCee365(h->gg): 1 +- 0.045 +- 0.01 +- 0.01 +- 0.005 +- 0.005
+    mu_hnunu_FCCee365(h->ZZ): 1 +- 0.10 +- 0.01 +- 0.003 +- 0.005
+    mu_hnunu_FCCee365(h->WW): 1 +- 0.036 +- 0.01 +- 0.003 +- 0.005
+    mu_hnunu_FCCee365(h->tautau): 1 +- 0.08 +- 0.01 +- 0.001 +- 0.005
+    mu_hnunu_FCCee365(h->gammagamma): 1 +- 0.22 +- 0.01 +- 0.01 +- 0.005
+    mu_hnunu_FCCee365(h->mumu): 1 +- 1 +- 0.01 +- 0.001 +- 0.005
 
       #FCCee EWPO experiment-centred:
       #  experiment: FCCee
