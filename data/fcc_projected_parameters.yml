@@ -1,0 +1,24 @@
+# Coupling constants impacting the FCC-ee electroweak observables with their uncertainties set to zero.
+# Required for the uncertainties of the FCC-ee observables to behave correctly.
+# The parametric uncertainty is taken into account in the measurement uncertainties
+#
+# Use by calling flavio.parameters.read_file_values(fcc_projected_parameters.yml, flavio.default_parameters) after importing flavio. 
+# The values below will override the default_parameters values.
+# The zero-uncertainty parameters below may also be used with the present-day electroweak measurements, as the experimental errors are dominant.
+#
+
+Delta_alpha_e_had: 0.027572
+alpha_s: 0.1184
+s2w: 0.23121
+GammaW_had: 1.4114
+delta_Gammab: 0
+delta_Gammac: 0
+delta_Gammad,s: 0
+delta_Gammae,mu: 0
+delta_Gammanu: 0
+delta_Gammatau: 0
+delta_Gammau: 0
+m_Z: 91.1876
+m_h: 125.25
+m_t: 172.5
+
