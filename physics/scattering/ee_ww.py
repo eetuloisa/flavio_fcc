@@ -104,6 +104,37 @@ def ee_WW(C, E):
               -0.018 * C['phil1_11']
               -0.015 * C['phie_11'])
         return 1 + 1e6 * res.real
+
+    # The three expressions below are for the FCC-ee WW, Zh and tt runs
+    if E == 161:
+        res = (-0.087 * C['phiD'] 
+               -0.192 * C['phiWB'] 
+               -0.001 * C['phil1_11'] 
+               +0.068 * C['phil3_11'] 
+               -0.174 * C['phil3_22'] 
+               -0.001 * C['phie_11'] 
+               +0.087 * C['ll_1221'])
+        return 1 + 1e6 * res.real
+    if E == 240:
+        res = (-0.006 * C['W'] 
+               -0.085 * C['phiD'] 
+               -0.171 * C['phiWB'] 
+               -0.028 * C['phil1_11'] 
+               +0.094 * C['phil3_11'] 
+               -0.170 * C['phil3_22'] 
+               -0.019 * C['phie_11'] 
+               +0.085 * C['ll_1221'])
+        return 1 + 1e6 * res.real
+    if E == 365:
+        res = (-0.01 * C['W'] 
+               -0.086 * C['phiD'] 
+               -0.172 * C['phiWB'] 
+               -0.051 * C['phil1_11'] 
+               +0.117 * C['phil3_11'] 
+               -0.171 * C['phil3_22'] 
+               -0.026 * C['phie_11'] 
+               +0.086 * C['ll_1221'])
+        return 1 + 1e6 * res.real
     raise ValueError("The ee->WW cross section is not defined for {} GeV.".format(E))
 
 
