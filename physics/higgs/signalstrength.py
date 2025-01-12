@@ -39,23 +39,23 @@ prod_modes = {
     },
     'hz_fccee240': {
         'desc': '$Z$ boson associated production at FCCee at 240 GeV',
-        'tex': 'Zh FCCee240',
-        'str': 'Zh_FCCee240',
+        'tex': 'Zh 240',
+        'str': 'Zh_240',
     },
     'hz_fccee365': {
         'desc': '$Z$ boson associated production at FCCee at 365 GeV',
-        'tex': 'Zh FCCee365',
-        'str': 'Zh_FCCee365',
+        'tex': 'Zh 365',
+        'str': 'Zh_365',
     },
     'hnunu_fccee240': {
         'desc': '$h \nu \nu$ production at FCCee at 240 GeV',
-        'tex': 'hnunu FCCee240',
-        'str': 'hnunu_FCCee240',
+        'tex': 'hnunu 240',
+        'str': 'hnunu_240',
     },
     'hnunu_fccee365': {
         'desc': '$h \nu \nu$ production at FCCee at 365 GeV',
-        'tex': 'hnunu FCCee365',
-        'str': 'hnunu_FCCee365',
+        'tex': 'hnunu 365',
+        'str': 'hnunu_365',
     },
 }
 
