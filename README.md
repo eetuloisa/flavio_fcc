@@ -1,3 +1,17 @@
 # Flavio with FCC-ee Higgs and electroweak precision observables
 
-This package, which extends flavio v2.6.1, is to be used in conjunction with the smelli_fcc repository.
+This package extends flavio v2.6.1 by introducing the projected FCC-ee sensitivities for a number of Higgs and electroweak precision observables (see also the related [smelli_fcc repository](https://github.com/eetuloisa/smelli_fcc)).
+Whilst we eventually hope to incorporate the features as part of the main program, currently the best way to access the FCC-ee sensitivity estimates is to make a local copy of this repository. The package can then be used in the same way as the unmodified flavio package. 
+
+For the full set of observables added, see the appendices in arXiv:2501.xxxxx. 
+If new to flavio, please consult the main [flavio page]([url](https://github.com/flav-io/flavio)) and the references therein.
+
+## Information on parametric theory uncertainties
+
+In contrast to the main flavio program, the FCC-ee theory uncertainties are treated as 'extra sources of errors' on the measurements. 
+As a consequence, when accessing the FCC-ee observables directly with flavio, the user should execute the line 
+```
+flavio.parameters.read_file_values('/path/to/flavio/data/fcc_projected_parameters.yml', flavio.default_parameters)
+```
+which sets the parametric theory errors to zero on the parameters relevant to the proper functioning of the code. 
+Their parametric theory errors are then correctly accounted for in the flavio/data/measurements.yml file.
