@@ -14,5 +14,3 @@ As a consequence, when accessing the FCC-ee observables directly with flavio, th
 ```
 flavio.parameters.read_file_values('/path/to/flavio/data/fcc_projected_parameters.yml', flavio.default_parameters)
 ```
-This sets the parametric theory errors to zero on the parameters relevant to the FCC-ee observables. 
-Their parametric theory errors are then correctly implemented in the flavio/data/measurements.yml file.
