@@ -15,3 +15,4 @@ As a consequence, when accessing the FCC-ee observables directly with flavio, th
 flavio.parameters.read_file_values('/path/to/flavio/data/fcc_projected_parameters.yml', flavio.default_parameters)
 ```
 at the beginning of the script or notebook. 
+When using smelli to construct a likelihood, this command is not required.
