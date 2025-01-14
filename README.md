@@ -9,9 +9,10 @@ If new to flavio, please consult the main [flavio page](https://github.com/flav-
 ## Information on parametric theory uncertainties
 
 In contrast to the main flavio program, the FCC-ee theory uncertainties are treated as 'extra sources of errors' on the measurements. 
+This choice was made to minimise the number of changes to the core program.
 As a consequence, when accessing the FCC-ee observables directly with flavio, the user should first execute the line 
 ```
 flavio.parameters.read_file_values('/path/to/flavio/data/fcc_projected_parameters.yml', flavio.default_parameters)
 ```
-which sets the parametric theory errors to zero on the parameters relevant to the proper functioning of the code. 
-Their parametric theory errors are then correctly accounted for in the flavio/data/measurements.yml file.
+This sets the parametric theory errors to zero on the parameters relevant to the FCC-ee observables. 
+Their parametric theory errors are then correctly implemented in the flavio/data/measurements.yml file.
