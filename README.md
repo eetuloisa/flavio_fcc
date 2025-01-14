@@ -4,7 +4,7 @@ This package extends flavio v2.6.1 by introducing the projected FCC-ee sensitivi
 Whilst we eventually hope to incorporate the features as part of the main program, currently the best way to access the FCC-ee sensitivity estimates is to make a local copy of this repository. The package can then be used in the same way as the unmodified flavio package. 
 
 For the full set of observables added, see the appendices in arXiv:2501.xxxxx. 
-If new to flavio, please consult the main [flavio page]([url](https://github.com/flav-io/flavio)) and the references therein.
+If new to flavio, please consult the main [flavio page](https://github.com/flav-io/flavio) and the references therein.
 
 ## Information on parametric theory uncertainties
 
