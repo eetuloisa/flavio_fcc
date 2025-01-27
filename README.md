@@ -7,7 +7,7 @@ Whilst we eventually hope to incorporate the features as part of the main progra
 2. Make a copy of the 'flavio' directory found in this repository and replace the default flavio installation with the FCC-ee version found here.
 3. The package can now be used in the same way as the unmodified flavio package. 
 
-For the full set of observables added, see the appendices in arXiv:2501.xxxxx. 
+For the full set of observables added, see the appendices in [arXiv:2501.08321](https://arxiv.org/abs/2501.08321). 
 If new to flavio, please consult the main [flavio page](https://github.com/flav-io/flavio) and the references therein.
 
 ## Information on parametric theory uncertainties
