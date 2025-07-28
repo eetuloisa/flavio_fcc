@@ -110,6 +110,11 @@ decay_modes = {
         'str': 'gg',
         'tex_class': r'h\to gg',
     },
+    'h_inclusive': {
+        'tex': r'\text{inc}',
+        'str': 'inc',
+        'tex_class': r'h\to \text{any}',
+    },
 }
 
 
@@ -132,6 +137,8 @@ def make_obs_higgs(name_prod, name_dec):
     obs.set_description(r"Signal strength of $" + process_tex + r"$ from " + d_prod['desc'])
     obs.tex = r"$\mu_{" + d_prod['tex'] + r"}(" + process_tex + r")$"
     obs.add_taxonomy(process_taxonomy)
+    print(f"{obs_name}")
+    print(f"{obs.tex}")
 
     def obs_fct(wc_obj, par):
         return higgs_signalstrength(wc_obj, par, name_prod, name_dec)

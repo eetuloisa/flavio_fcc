@@ -116,3 +116,9 @@ def h_mumu(C):
           +0.061 * (C['ll_1221'] / 2 - C['phil3_22'] - C['phil3_11'])
           -199.8 * C['ephi_22'])
     return 1 + 1e6 * np.real
+
+# Added by Eetu Loisa 2025
+def h_inclusive(C):
+    r"""Higgs inclusive production"""
+    return 1
+
